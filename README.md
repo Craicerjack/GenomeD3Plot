@@ -80,23 +80,21 @@ Manipulating plots
 
 You may also make JS calls to manipulate visualized tracks, the basic functionality is to show and hide a track, this is done via the name in the trackName element of the track.
 
-```
+```javascript
 cTrack.showTrack("track1");
-
 cTrack.hideTrack("track1");
 ```
 
 For glyph tracks the format is slightly different, you must specify which glyph type in the track is to be shown or hidden.
 
-```
+```javascript
 cTrack.showGlyphTrackType("track5", "adb");
-
 cTrack.hideGlyphTrackType("track5", "adb");
 ```
 
 There is also functionality to alter the radius of where a track is in a circular plot.  This is done by track id rather than name so a call to findTrackbyName must be done first:
 
-```
+```javascript
 var id = cTrack.findTrackbyName('track1');
 cTrack.moveTrack(id, newInnerRadius, newOuterRadius);
 ```
@@ -106,21 +104,21 @@ Attaching a brush
 
 For zooming and resizing the linear track there's a brush element made to work with the track.  Once the linear track is made the brush can "attach" to it.
 
-```
+```javascript
 var linearTrack = new genomeTrack(linearlayout, tracks);
 var brush = new linearBrush(contextLayout,linearTrack);
 ```
 
 There's also a polar brush element in the circular plot type that can be attached to a linear plot, so when the polar brush is moved on the ciruclar plot it will update the linear track.
 
-```
+```javascript
 var cTrack = new circularTrack(circularlayout, tracks);
 cTrack.attachBrush(linearTrack);
 ```
 
 Both the linear and circular plots allow multiple callbacks if there is more than one element you need to alter when either the linear or circular brushes are altered.  Simply make multiple calls to attachBrush() in either plot type and the callbacks will each be called on update. 
 
-```
+```javascript
 cTrack.attachBrush(linearTrack);
 cTrack.attachBrush(someOtherObj);
 ```
