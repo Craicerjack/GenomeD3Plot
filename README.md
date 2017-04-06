@@ -36,7 +36,7 @@ Data format
 
 The data passed in must be an array of track objects (see included data.js for sample data).  Each track has the format of:
 
-```json
+```javascript
 { 
     trackName: "track1",
     trackType: "stranded",
