@@ -953,3 +953,168 @@ genomeTrack.prototype.callBrushFinished = function() {
         }
     }
 }
+
+genomeTrack.prototype.drawFeatures = function() {
+    var x1 = this.x1;
+    var y1 = this.y1;
+    // Quick debugging variable to show click rects
+    var opacity = 0;
+    // Lollipop for terminator glyph (stranded, positive)
+    var lollipop_strand_pos = this.defs.append("g").attr("id", "lollipop_strand_pos");
+    lollipop_strand_pos.append("path")
+        .attr("class", "lollipophead")
+        .attr("d", function() {
+            arc = "m 0,";
+            arc += y1(1) * 0.69;
+            arc += " a ";
+            arc += y1(1) * 0.13;
+            arc += ",";
+            arc += y1(1) * 0.13;
+            arc += " 0 1 1 ";
+            arc += y1(1) * 0.09;
+            arc += ",0";
+            return arc;
+        });
+
+    lollipop_strand_pos.append("path")
+        .attr("class", "lollipopstemend")
+        .attr("d", function() {
+            line = "m " + (y1(1) * 0.09) + ",";
+            line += y1(1) * 0.69;
+            line += " l 0,";
+            line += y1(1) * 0.70;
+            return line;
+        });
+    
+    lollipop_strand_pos.append("path")
+        .attr("class", "lollipopstemstart")
+        .attr("d", function() {
+            line = "m 0,";
+            line += y1(1) * 0.69;
+            line += " l 0,";
+            line += y1(1) * 0.70;
+            return line;
+        });
+
+    lollipop_strand_pos.append("rect")
+        .attr("transform", function () { return "translate(-" + (y1(1) * 0.1) + "," + (y1(1) * 0.43) + ")"; })
+        .attr("width", function() { return y1(1) * 0.3; })
+        .attr("height", function() { return y1(1) * 0.26; })
+        .attr("fill-opacity", opacity);
+
+    lollipop_strand_pos.append("rect")
+        .attr("transform", function() { return "translate(0, " + (y1(1) * 0.68) + ")"; })
+        .attr("width", 8)
+        .attr("height", function() { return  y1(1) * 0.72; })
+        .attr("fill-opacity", opacity);
+
+    // Lollipop for terminator glyph (stranded, negative)
+    var lollipop_strand_neg = this.defs.append("g").attr("id", "lollipop_strand_neg");
+    lollipop_strand_neg.append("path")
+        .attr("class", "lollipophead")
+        .attr("d", function() {
+            arc = "m 0,";
+            arc += y1(1) * 1.20;
+            arc += " a ";
+            arc += y1(1) * 0.13;
+            arc += ",";
+            arc += y1(1) * 0.13;
+            arc += " 0 1 0 ";
+            arc += y1(1) * 0.09;
+            arc += ",0";
+            return arc;
+        });
+
+    lollipop_strand_neg.append("path")
+        .attr("class", "lollipopstemstart")
+        .attr("d", function() {
+            line = "m " + (y1(1) * 0.09) + ",";
+            line += y1(1) * 1.20;
+            line += " l 0,";
+            line += y1(1) * 0.71 * -1;
+            return line;
+        });
+
+    lollipop_strand_neg.append("path")
+        .attr("class", "lollipopstemend")
+        .attr("d", function() {
+            line = "m 0,";
+            line += y1(1) * 1.20;
+            line += " l 0,";
+            line += y1(1) * 0.71 * -1;
+            return line;
+        });
+
+    lollipop_strand_neg.append("rect")
+        .attr("transform", function () { return "translate(-" + (y1(1) * 0.1) + "," + (y1(1) * 1.20) + ")"; })
+        .attr("width", function() { return y1(1) * 0.3; })
+        .attr("height", function() { return y1(1) * 0.26; })
+        .attr("fill-opacity", opacity);
+
+    lollipop_strand_neg.append("rect")
+        .attr("transform", function() { return "translate(0, " + (y1(1) * 0.50) + ")"; })
+        .attr("width", 8)
+        .attr("height", function() { return  y1(1) * 0.71; })
+        .attr("fill-opacity", opacity);
+
+    // Lollipop for terminator glyph (unstranded)
+    var lollipop = this.defs.append("g").attr("id", "lollipop");
+    lollipop.append("path")
+        .attr("class", "lollipophead")
+        .attr("d", function() {
+            arc = "m 0,";
+            arc += y1(1) * 0.77;
+            arc += " a ";
+            arc += y1(1) * 0.13;
+            arc += ",";
+            arc += y1(1) * 0.13;
+            arc += " 0 1 1 ";
+            arc += y1(1) * 0.09;
+            arc += ",0";
+            return arc;
+        });
+
+    lollipop.append("path")
+        .attr("class", "lollipopstemend")
+        .attr("d", function() {
+            line = "m " + (y1(1) * 0.09) + ",";
+            line += y1(1) * 0.77;
+            line += " l 0,";
+            line += y1(1) * 0.62;
+            return line;
+        });
+
+    lollipop.append("path")
+        .attr("class", "lollipopstemstart")
+        .attr("d", function() {
+            line = "m 0,";
+            line += y1(1) * 0.77;
+            line += " l 0,";
+            line += y1(1) * 0.62;
+            return line;
+        });
+
+    lollipop.append("rect")
+        .attr("transform", function () { return "translate(-" + (y1(1) * 0.1) + "," + (y1(1) * 0.51) + ")"; })
+        .attr("width", function() { return y1(1) * 0.3; })
+        .attr("height", function() { return y1(1) * 0.26; })
+        .attr("fill-opacity", opacity);
+
+    lollipop.append("rect")
+        .attr("transform", function() { return "translate(0, " + (y1(1) * 0.76) + ")"; })
+        .attr("width", 8)
+        .attr("height", function() { return  y1(1) * 0.64; })
+        .attr("fill-opacity", opacity);
+
+    // Right arrow
+    var rightarrow = this.defs.append("g").attr("id", "rightarrow");
+    rightarrow.append("path")
+        .attr("class", "rightarrow")
+        .attr("d", function() { return "m 0,0 l -4,4 m 0,-8 l 4,4"; });
+
+    // Left arrow
+    var leftarrow = this.defs.append("g").attr("id", "leftarrow");
+    leftarrow.append("path")
+        .attr("class", "rightarrow")
+        .attr("d", function() { return "m 0,0 l 4,4 m 0,-8 l -4,4"; });
+}
