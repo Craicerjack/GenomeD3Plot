@@ -36,17 +36,20 @@ Data format
 
 The data passed in must be an array of track objects (see included data.js for sample data).  Each track has the format of:
 
-```
+```json
 { 
-  trackName: "track1",
-  trackType: "stranded",
-  visible: true,
-  inner_radius: 125,
-  outer_radius: 175,
-  items: [
-          {id: 1, start:0, end:30000, name:"island0", strand: -1},
-           ...
-         ]
+    trackName: "track1",
+    trackType: "stranded",
+    visible: true,
+    inner_radius: 125,
+    outer_radius: 175,
+    items: [
+        {
+            id: 1, start:0, end:30000, name:"island0", strand: -1
+        }, {
+            ...
+        }
+    ]
 }
 ```
 
@@ -61,10 +64,11 @@ Creating plots
 
 Tracks also require a second object to be passed on when creating them, the layout of the track.  The minimum needed is the genomesize (in bp) and the div to create the object in.  Additional configuration options such as margin sizes can also be configured.
 
-```
-var circularlayout = {genomesize: 6264404,
-                      container: "#circularchart",
-        };
+```javascript
+var circularlayout = {
+    genomesize: 6264404,
+    container: "#circularchart",
+};
 
 var cTrack = new circularTrack(circularlayout, tracks);
 ```
@@ -129,25 +133,29 @@ The callback used when "attaching" a brush can either be a plot object or your o
 Stranded/Block Track configuration options
 ==========================================
 
-```
+```javascript
 var tracks = [
-	      { trackName: "track1",
-		trackType: "stranded", [or "track" for non-stranded]
-		visible: true,
-		inner_radius: 125,
-		outer_radius: 175,
-		mouseclick: 'islandPopup',
-		mouseover_callback: 'islandPopup',
-		mouseout_callback: 'islandPopupClear',
-		linear_mouseclick: 'linearPopup',
-		showLabels: true,
-		showTooltip: true,
-		items: [
-                         {id: 1, start:0, end:30000, name:"island0", strand: -1},
-                          ...
-                       ]
-               }
-              ]
+    { 
+        trackName: "track1",
+        trackType: "stranded", [or "track" for non-stranded]
+        visible: true,
+        inner_radius: 125,
+        outer_radius: 175,
+        mouseclick: 'islandPopup',
+        mouseover_callback: 'islandPopup',
+        mouseout_callback: 'islandPopupClear',
+        linear_mouseclick: 'linearPopup',
+        showLabels: true,
+        showTooltip: true,
+        items: [
+            {
+                id: 1, start:0, end:30000, name:"island0", strand: -1
+            }, {
+                ...
+            }
+        ]
+    }
+]
 ```
 
 inner_radius: The inner radius of arcs, in px, for the track.
@@ -172,22 +180,23 @@ showTooltip: Show a hoverover tooltip on a linear plot of the name element in th
 Plot configuration options
 ==========================
 
-```
-	      { trackName: "track4",
-		trackType: "plot",
-		visible: true,
-		plot_min: 0.4891,
-		plot_max: 0.7274,
-		plot_mean: 0.66558768401076,
-		bp_per_element: 10000,
-	        plot_width: 50,
-		plot_radius: 100,
-	        linear_plot_width: 50,
-		linear_plot_height: 100,
-		items: [
-                        ...
-                       ]
-              }
+```javascript
+{ 
+    trackName: "track4",
+    trackType: "plot",
+    visible: true,
+    plot_min: 0.4891,
+    plot_max: 0.7274,
+    plot_mean: 0.66558768401076,
+    bp_per_element: 10000,
+    plot_width: 50,
+    plot_radius: 100,
+    linear_plot_width: 50,
+    linear_plot_height: 100,
+    items: [
+        ...
+    ]
+}
 ```
 
 plot_min: The minimum value in the set of element
@@ -205,23 +214,27 @@ linear_plot_height: The number of pixels from the top of a linear plot for the c
 Glyph configuration options
 ===========================
 
-```
-	      { trackName: "track5",
-		trackType: 'glyph',
-		glyphType: 'circle',
-		radius: 75,
-		pixel_spacing: 8,
-		linear_pixel_spacing: 8,
-	        glyph_buffer: 8,
-	        linear_glyph_buffer: 8,
-		glyphSize: 20,
-		linear_glyphSize: 20,
-		linear_height: 100,
-		items: [
-			{id: 1, bp: 100, type: 'vfdb'},
-                        ...
-                       ]
-              }
+```javascript
+{ 
+    trackName: "track5",
+    trackType: 'glyph',
+    glyphType: 'circle',
+    radius: 75,
+    pixel_spacing: 8,
+    linear_pixel_spacing: 8,
+    glyph_buffer: 8,
+    linear_glyph_buffer: 8,
+    glyphSize: 20,
+    linear_glyphSize: 20,
+    linear_height: 100,
+    items: [
+        {
+            id: 1, bp: 100, type: 'vfdb'
+        }, {
+            ...
+        }
+    ]
+}
 ```
 
 glyphType: The type of glyph, any valid SVG shape is allowed
